@@ -3,19 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio - Emri Juaj</title>
+    <title>Emri Juaj - Portofolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         /* Stilizimi Bazë */
         :root {
-            --bg-color: #ffffff;
+            --bg-color: #f8f9fa;
             --text-color: #2d3436;
             --primary: #6c5ce7;
             --secondary: #a66efa;
-            --card-bg: #f8f9fa;
+            --card-bg: #ffffff;
         }
 
         [data-theme="dark"] {
@@ -24,187 +21,398 @@
             --card-bg: #3a4042;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: all 0.3s ease;
-        }
-
-        /* Stilizimi i Projekteve */
-        .projects-section {
+        /* Stilizimi i Seksionit 'Rreth Meje' */
+        .about-section {
             padding: 5rem 2rem;
-            background: var(--card-bg);
+            background: var(--bg-color);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
         }
 
-        .project-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        .profile-side {
+            text-align: center;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(108,92,231,0.3);
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-top: 2rem;
         }
 
-        .project-card {
-            background: var(--bg-color);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-            transition: transform 0.3s;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-media {
-            position: relative;
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .project-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-            padding: 1rem;
-            color: white;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 1rem 0;
-        }
-
-        .tech-tag {
+        .skill-tag {
             background: var(--primary);
             color: white;
-            padding: 0.3rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
         }
 
-        /* Animacione */
-        .reveal-item {
-            opacity: 0;
-            transform: translateY(30px);
+        .skill-tag:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Stilizimi i CV-së */
+        .cv-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        .download-cv {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .download-btn {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
         }
     </style>
 </head>
 <body>
+    <!-- Seksioni 'Rreth Meje' -->
+    <section id="about" class="about-section">
+        <div class="profile-side">
+            <img src="profile.jpg" alt="Foto Profili" class="profile-img">
+            <div class="skills-cloud">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">Node.js</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">UI/UX</span>
+                <span class="skill-tag">MongoDB</span>
+            </div>
+        </div>
 
-    <!-- Seksioni i Projekteve -->
-    <section id="projects" class="projects-section">
-        <h2>Projektet e Mia</h2>
-        
-        <div class="project-grid">
-            <!-- Projekti 1 -->
-            <div class="project-card reveal-item">
-                <div class="project-media">
-                    <img src="project1.jpg" alt="Projekti 1">
-                    <div class="project-overlay">
-                        <h3>Platforma E-Commerce</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                        <p>Platform moderne për menaxhimin e shitjeve online</p>
-                        <div class="project-links">
-                            <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live</a>
-                            <a href="#" class="btn"><i class="fab fa-github"></i> Kodi</a>
-                        </div>
-                    </div>
+        <div class="about-content">
+            <h2>Rreth Meje</h2>
+            <p class="intro-text">
+                Jam një zhvillues full stack me pasion për krijimin e zgjidhjeve inovative. 
+                Me më shumë se 5 vjet përvojë në industri, kam punuar në projekte të ndryshme 
+                që variojnë nga platforma e-commerce deri te aplikacione enterprise.
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>50+</h3>
+                    <p>Projekte të Përfunduara</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h3>30+</h3>
+                    <p>Klientë të Kënaqur</p>
                 </div>
             </div>
 
-            <!-- Projekti 2 -->
-            <div class="project-card reveal-item">
-                <div class="project-media">
-                    <img src="project2.jpg" alt="Projekti 2">
-                    <div class="project-overlay">
-                        <h3>Sistemi CRM</h3>
-                        <div class="tech-stack">
-                            <span class="tech-tag">Vue.js</span>
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">MySQL</span>
-                        </div>
-                        <p>Sistem i personalizuar për menaxhimin e klientëve</p>
-                        <div class="project-links">
-                            <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live</a>
-                            <a href="#" class="btn"><i class="fab fa-github"></i> Kodi</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="bio-text">
+                <p>
+                    Specializoj në zhvillimin e aplikacioneve moderne web duke përdorur 
+                    teknologjitë më të fundit si React, Node.js dhe cloud services. 
+                    Gjithmonë në kërkim të sfidave të reja dhe mundësive për të mësuar.
+                </p>
             </div>
         </div>
     </section>
 
-    <script>
-        // Animacionet për Projekte
-        gsap.utils.toArray(".reveal-item").forEach(item => {
-            gsap.from(item, {
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 80%"
-                },
-                duration: 1,
-                opacity: 0,
-                y: 50,
-                ease: "power4.out"
-            });
-        });
+    <!-- Seksioni CV -->
+    <section id="cv" class="cv-section">
+        <div class="timeline">
+            <h2>Eksperienca Profesionale</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>Zhvillues Full Stack</h3>
+                    <p class="company">Tech Innovators Inc.</p>
+                    <p class="duration">2022 - Present</p>
+                </div>
+                <ul class="timeline-details">
+                    <li><i class="fas fa-caret-right"></i> Zhvillimi i sistemit të menaxhimit të brendshëm</li>
+                    <li><i class="fas fa-caret-right"></i> Implementimi i veçorive të reja në produktin kryesor</li>
+                    <li><i class="fas fa-caret-right"></i> Optimizimi i performancës së aplikacionit</li>
+                </ul>
+            </div>
 
-        // Hover efekt për projektet
-        gsap.to(".project-card", {
-            hover: {
-                y: -15,
-                duration: 0.3,
-                ease: "power2.out"
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>Frontend Developer</h3>
+                    <p class="company">Digital Solutions</p>
+                    <p class="duration">2020 - 2022</p>
+                </div>
+                <ul class="timeline-details">
+                    <li><i class="fas fa-caret-right"></i> Krijimi i UI/UX për aplikacione mobile</li>
+                    <li><i class="fas fa-caret-right"></i> Zhvillimi i komponentëve të riutilizueshëm</li>
+                    <li><i class="fas fa-caret-right"></i> Integrimi me API të jashtëm</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="download-cv">
+            <a href="cv.pdf" download class="download-btn">
+                <i class="fas fa-download"></i>
+                Shkarko CV
+            </a>
+        </div>
+    </section>
+
+    <!-- Stilizim Shtesë -->
+    <style>
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--text-color);
+            margin: 0.5rem 0;
+        }
+
+        .timeline-header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .company {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .duration {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .timeline-details {
+            list-style: none;
+        }
+
+        .timeline-details li {
+            margin: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .about-section {
+                grid-template-columns: 1fr;
+                padding: 3rem 1rem;
             }
-        });
 
-        // Animacion overlay
-        gsap.to(".project-overlay", {
-            backgroundPosition: "0% 0%",
-            scrollTrigger: {
-                trigger: ".project-media",
-                start: "top center",
-                scrub: true
+            .profile-img {
+                width: 200px;
+                height: 200px;
             }
-        });
 
-        // ScrollReveal për titullin
-        ScrollReveal().reveal('h2', {
-            delay: 200,
-            distance: '50px',
-            origin: 'left',
-            easing: 'ease-in-out'
-        });
-    </script>
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Shtoni këto në seksionin <head> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Shtoni këto animacione në fund të seksionit <script> -->
+<script>
+    // Animacioni i Hero Section me GSAP
+    gsap.from(".profile-img", {
+        duration: 1.5,
+        scale: 0.8,
+        opacity: 0,
+        ease: "power4.out",
+        rotation: 5
+    });
+
+    gsap.from(".hero-content h1", {
+        duration: 1.2,
+        y: 100,
+        opacity: 0,
+        ease: "bounce.out",
+        delay: 0.3
+    });
+
+    // Animacioni i Skills Cloud me hover
+    gsap.from(".skill-tag", {
+        stagger: 0.1,
+        scale: 0,
+        opacity: 0,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+            trigger: ".skills-cloud",
+            start: "top 80%"
+        }
+    });
+
+    // Animacioni i Timeline me ScrollReveal
+    ScrollReveal().reveal('.timeline-item', {
+        delay: 300,
+        distance: '50px',
+        origin: 'left',
+        interval: 200,
+        easing: 'ease-in-out'
+    });
+
+    // Animacioni i Stats Grid me GSAP
+    gsap.from(".stat-item", {
+        stagger: 0.3,
+        duration: 1,
+        scale: 0.8,
+        opacity: 0,
+        ease: "elastic.out(1, 0.5)",
+        scrollTrigger: {
+            trigger: ".stats-grid",
+            start: "top 70%"
+        }
+    });
+
+    // Hover efekti për projektet
+    gsap.to(".project-card", {
+        hover: {
+            y: -10,
+            boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
+            duration: 0.3,
+            ease: "power2.out"
+        }
+    });
+
+    // Animacioni i download button
+    gsap.from(".download-btn", {
+        duration: 1,
+        scale: 0,
+        rotation: 360,
+        ease: "power4.out",
+        scrollTrigger: {
+            trigger: ".download-cv",
+            start: "top 80%"
+        }
+    });
+
+    // Text stagger animation për bio
+    gsap.from(".bio-text p", {
+        duration: 1.5,
+        y: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power4.out",
+        scrollTrigger: {
+            trigger: ".bio-text",
+            start: "top 80%"
+        }
+    });
+
+    // Counter animation për stats
+    gsap.to(".stat-item h3", {
+        textContent: 0,
+        duration: 2,
+        ease: "power4.out",
+        snap: { textContent: 1 },
+        stagger: 0.5,
+        scrollTrigger: {
+            trigger: ".stats-grid",
+            start: "top 70%",
+            toggleActions: "play none none reset"
+        },
+        onUpdate: function(target) {
+            const endValue = parseInt(target.targets()[0].getAttribute('data-end-value'));
+            target.targets()[0].textContent = Math.floor(this.targets()[0].textContent);
+            if(parseInt(target.targets()[0].textContent) === endValue) this.pause();
+        }
+    });
+</script>
+
+<!-- Përditësoni HTML për stats -->
+<div class="stat-item">
+    <i class="fas fa-project-diagram"></i>
+    <h3 data-end-value="50">0</h3>
+    <p>Projekte të Përfunduara</p>
+</div>
+<div class="stat-item">
+    <i class="fas fa-users"></i>
+    <h3 data-end-value="30">0</h3>
+    <p>Klientë të Kënaqur</p>
+</div>
 </body>
-</html>
+    </html>
