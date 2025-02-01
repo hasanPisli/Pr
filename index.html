@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emri Juaj - Portofolio</title>
+    <title>Portofolio - Emri Juaj</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         /* Stilizimi Bazë */
         :root {
-            --bg-color: #f8f9fa;
+            --bg-color: #ffffff;
             --text-color: #2d3436;
             --primary: #6c5ce7;
             --secondary: #a66efa;
-            --card-bg: #ffffff;
+            --card-bg: #f8f9fa;
         }
 
         [data-theme="dark"] {
@@ -21,398 +23,216 @@
             --card-bg: #3a4042;
         }
 
-        /* Stilizimi i Seksionit 'Rreth Meje' */
-        .about-section {
-            padding: 5rem 2rem;
-            background: var(--bg-color);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
         }
 
-        .profile-side {
-            text-align: center;
+        /* Stilizimi i Slider-it */
+        .slider-section {
+            padding: 4rem 0;
+            background: var(--card-bg);
             position: relative;
+            overflow: hidden;
         }
 
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary);
-            box-shadow: 0 10px 30px rgba(108,92,231,0.3);
-        }
-
-        .skills-cloud {
+        .slider-wrapper {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
+            transition: transform 0.5s ease-in-out;
         }
 
-        .skill-tag {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: transform 0.3s;
+        .slide {
+            min-width: 100%;
+            padding: 0 2rem;
+            text-align: center;
         }
 
-        .skill-tag:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Stilizimi i CV-së */
-        .cv-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .timeline {
-            position: relative;
+        .slide-content {
             max-width: 800px;
             margin: 0 auto;
-        }
-
-        .timeline-item {
-            background: var(--card-bg);
             padding: 2rem;
-            margin: 2rem 0;
+            background: var(--bg-color);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
-            color: var(--text-color);
         }
 
-        .timeline-item::before {
-            content: '';
+        .slider-nav {
             position: absolute;
-            left: -30px;
-            top: 20px;
-            width: 20px;
-            height: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .slider-btn {
             background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-        }
-
-        .download-cv {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .download-btn {
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
+            cursor: pointer;
             transition: transform 0.3s;
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
+        /* Stilizimi i Footer-it */
+        footer {
+            background: var(--text-color);
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
         }
-    </style>
-</head>
-<body>
-    <!-- Seksioni 'Rreth Meje' -->
-    <section id="about" class="about-section">
-        <div class="profile-side">
-            <img src="profile.jpg" alt="Foto Profili" class="profile-img">
-            <div class="skills-cloud">
-                <span class="skill-tag">React</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">UI/UX</span>
-                <span class="skill-tag">MongoDB</span>
-            </div>
-        </div>
 
-        <div class="about-content">
-            <h2>Rreth Meje</h2>
-            <p class="intro-text">
-                Jam një zhvillues full stack me pasion për krijimin e zgjidhjeve inovative. 
-                Me më shumë se 5 vjet përvojë në industri, kam punuar në projekte të ndryshme 
-                që variojnë nga platforma e-commerce deri te aplikacione enterprise.
-            </p>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>50+</h3>
-                    <p>Projekte të Përfunduara</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3>30+</h3>
-                    <p>Klientë të Kënaqur</p>
-                </div>
-            </div>
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
 
-            <div class="bio-text">
-                <p>
-                    Specializoj në zhvillimin e aplikacioneve moderne web duke përdorur 
-                    teknologjitë më të fundit si React, Node.js dhe cloud services. 
-                    Gjithmonë në kërkim të sfidave të reja dhe mundësive për të mësuar.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seksioni CV -->
-    <section id="cv" class="cv-section">
-        <div class="timeline">
-            <h2>Eksperienca Profesionale</h2>
-            
-            <div class="timeline-item">
-                <div class="timeline-header">
-                    <h3>Zhvillues Full Stack</h3>
-                    <p class="company">Tech Innovators Inc.</p>
-                    <p class="duration">2022 - Present</p>
-                </div>
-                <ul class="timeline-details">
-                    <li><i class="fas fa-caret-right"></i> Zhvillimi i sistemit të menaxhimit të brendshëm</li>
-                    <li><i class="fas fa-caret-right"></i> Implementimi i veçorive të reja në produktin kryesor</li>
-                    <li><i class="fas fa-caret-right"></i> Optimizimi i performancës së aplikacionit</li>
-                </ul>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-header">
-                    <h3>Frontend Developer</h3>
-                    <p class="company">Digital Solutions</p>
-                    <p class="duration">2020 - 2022</p>
-                </div>
-                <ul class="timeline-details">
-                    <li><i class="fas fa-caret-right"></i> Krijimi i UI/UX për aplikacione mobile</li>
-                    <li><i class="fas fa-caret-right"></i> Zhvillimi i komponentëve të riutilizueshëm</li>
-                    <li><i class="fas fa-caret-right"></i> Integrimi me API të jashtëm</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="download-cv">
-            <a href="cv.pdf" download class="download-btn">
-                <i class="fas fa-download"></i>
-                Shkarko CV
-            </a>
-        </div>
-    </section>
-
-    <!-- Stilizim Shtesë -->
-    <style>
-        .about-content h2 {
-            font-size: 2.5rem;
+        .footer-section h3 {
             color: var(--primary);
             margin-bottom: 1.5rem;
         }
 
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .stat-item {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .stat-item i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2rem;
-            color: var(--text-color);
-            margin: 0.5rem 0;
-        }
-
-        .timeline-header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .company {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .duration {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .timeline-details {
-            list-style: none;
-        }
-
-        .timeline-details li {
-            margin: 0.5rem 0;
+        .social-links {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
-        @media (max-width: 768px) {
-            .about-section {
-                grid-template-columns: 1fr;
-                padding: 3rem 1rem;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
         }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Stilizime ekzistuese për seksionet e tjera... */
     </style>
-    <!-- Shtoni këto në seksionin <head> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Seksionet ekzistuese (Hero, Rreth Meje, Projekte, CV, etj.) -->
 
-<!-- Shtoni këto animacione në fund të seksionit <script> -->
-<script>
-    // Animacioni i Hero Section me GSAP
-    gsap.from(".profile-img", {
-        duration: 1.5,
-        scale: 0.8,
-        opacity: 0,
-        ease: "power4.out",
-        rotation: 5
-    });
+    <!-- Slider Section -->
+    <section class="slider-section">
+        <div class="slider-wrapper">
+            <div class="slide">
+                <div class="slide-content">
+                    <h3>Projekti i Fundit</h3>
+                    <p>Platforma moderne e-commerce me React dhe Node.js</p>
+                    <img src="project1.jpg" alt="Projekti 1" style="max-width:100%; height:300px; object-fit:cover; border-radius:10px;">
+                    <div style="margin-top:1rem;">
+                        <a href="#" class="btn">Shiko Detajet</a>
+                    </div>
+                </div>
+            </div>
 
-    gsap.from(".hero-content h1", {
-        duration: 1.2,
-        y: 100,
-        opacity: 0,
-        ease: "bounce.out",
-        delay: 0.3
-    });
+            <div class="slide">
+                <div class="slide-content">
+                    <h3>Sistemi CRM</h3>
+                    <p>Menaxhimi i klientëve me Vue.js dhe Laravel</p>
+                    <img src="project2.jpg" alt="Projekti 2" style="max-width:100%; height:300px; object-fit:cover; border-radius:10px;">
+                    <div style="margin-top:1rem;">
+                        <a href="#" class="btn">Shiko Detajet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    // Animacioni i Skills Cloud me hover
-    gsap.from(".skill-tag", {
-        stagger: 0.1,
-        scale: 0,
-        opacity: 0,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-            trigger: ".skills-cloud",
-            start: "top 80%"
+        <div class="slider-nav">
+            <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Kontakt</h3>
+                <p><i class="fas fa-envelope"></i> info@example.com</p>
+                <p><i class="fas fa-phone"></i> +355 67 123 4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Navigim</h3>
+                <ul style="list-style:none; padding:0;">
+                    <li><a href="#home" style="color:white; text-decoration:none;">Home</a></li>
+                    <li><a href="#projects" style="color:white; text-decoration:none;">Projektet</a></li>
+                    <li><a href="#cv" style="color:white; text-decoration:none;">CV</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Rreth Nesh</h3>
+                <p>Zhvillues full-stack me fokus në teknologjitë moderne web</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Emri Juaj. Të gjitha të drejtat e rezervuara</p>
+        </div>
+    </footer>
+
+    <script>
+        // Logjika e Slider-it
+        const sliderWrapper = document.querySelector('.slider-wrapper');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIndex = 0;
+
+        function updateSlider() {
+            sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-    });
 
-    // Animacioni i Timeline me ScrollReveal
-    ScrollReveal().reveal('.timeline-item', {
-        delay: 300,
-        distance: '50px',
-        origin: 'left',
-        interval: 200,
-        easing: 'ease-in-out'
-    });
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        });
 
-    // Animacioni i Stats Grid me GSAP
-    gsap.from(".stat-item", {
-        stagger: 0.3,
-        duration: 1,
-        scale: 0.8,
-        opacity: 0,
-        ease: "elastic.out(1, 0.5)",
-        scrollTrigger: {
-            trigger: ".stats-grid",
-            start: "top 70%"
-        }
-    });
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlider();
+        });
 
-    // Hover efekti për projektet
-    gsap.to(".project-card", {
-        hover: {
-            y: -10,
-            boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
-            duration: 0.3,
+        // Auto-slide çdo 5 sekonda
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlider();
+        }, 5000);
+
+        // Animacion për footer
+        gsap.from(".footer-section", {
+            scrollTrigger: {
+                trigger: "footer",
+                start: "top bottom"
+            },
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
             ease: "power2.out"
-        }
-    });
-
-    // Animacioni i download button
-    gsap.from(".download-btn", {
-        duration: 1,
-        scale: 0,
-        rotation: 360,
-        ease: "power4.out",
-        scrollTrigger: {
-            trigger: ".download-cv",
-            start: "top 80%"
-        }
-    });
-
-    // Text stagger animation për bio
-    gsap.from(".bio-text p", {
-        duration: 1.5,
-        y: 50,
-        opacity: 0,
-        stagger: 0.2,
-        ease: "power4.out",
-        scrollTrigger: {
-            trigger: ".bio-text",
-            start: "top 80%"
-        }
-    });
-
-    // Counter animation për stats
-    gsap.to(".stat-item h3", {
-        textContent: 0,
-        duration: 2,
-        ease: "power4.out",
-        snap: { textContent: 1 },
-        stagger: 0.5,
-        scrollTrigger: {
-            trigger: ".stats-grid",
-            start: "top 70%",
-            toggleActions: "play none none reset"
-        },
-        onUpdate: function(target) {
-            const endValue = parseInt(target.targets()[0].getAttribute('data-end-value'));
-            target.targets()[0].textContent = Math.floor(this.targets()[0].textContent);
-            if(parseInt(target.targets()[0].textContent) === endValue) this.pause();
-        }
-    });
-</script>
-
-<!-- Përditësoni HTML për stats -->
-<div class="stat-item">
-    <i class="fas fa-project-diagram"></i>
-    <h3 data-end-value="50">0</h3>
-    <p>Projekte të Përfunduara</p>
-</div>
-<div class="stat-item">
-    <i class="fas fa-users"></i>
-    <h3 data-end-value="30">0</h3>
-    <p>Klientë të Kënaqur</p>
-</div>
+        });
+    </script>
 </body>
 </html>
