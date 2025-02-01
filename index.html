@@ -1,12 +1,94 @@
 <!DOCTYPE html>
 <html lang="sq">
 <head>
-    <!-- Head përmbajtja e mëparshme mbetet e njëjtë -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emri Juaj - Portofolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scrollreveal@4.0.9/dist/scrollreveal.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
-        /* Shtojmë stilizime shtesë */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --card-bg: #f8f9fa;
+            --primary: #2563eb;
+            --secondary: #4f46e5;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --card-bg: #2d2d2d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            background: var(--card-bg);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        /* Hero Section */
         .hero {
-            position: relative;
-            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, var(--card-bg), var(--bg-color));
+            padding: 2rem;
         }
 
         .profile-image {
@@ -18,8 +100,25 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
 
+        /* Projects Section */
+        .projects {
+            padding: 5rem 2rem;
+            background: var(--card-bg);
+        }
+
         .project-card {
+            background: var(--bg-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin: 2rem 0;
             position: relative;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
         }
 
         .project-overlay {
@@ -28,204 +127,170 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             color: white;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             opacity: 0;
             transition: opacity 0.3s;
-            padding: 1rem;
+            padding: 2rem;
         }
 
         .project-card:hover .project-overlay {
             opacity: 1;
         }
 
-        .tech-badge {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin: 0.2rem;
-        }
-
-        .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .gallery-item {
+        /* Blog Section */
+        .blog-post {
+            background: var(--card-bg);
             border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s;
+            padding: 2rem;
+            margin: 2rem 0;
         }
 
-        .gallery-item:hover {
-            transform: scale(1.05);
+        /* Kontakt Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section me Foto -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projektet</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Seksioni Kryesor -->
     <section id="home" class="hero">
         <div class="hero-content">
             <img src="profile.jpg" alt="Foto Profili" class="profile-image">
             <h1>Emri Juaj</h1>
-            <p>Full Stack Developer & UI Designer</p>
+            <p>Full Stack Developer</p>
             <div class="social-links">
-                <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="social-icon"><i class="fab fa-dribbble"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- Seksioni i Projekteve me Galeri -->
+    <!-- Projektet -->
     <section id="projects" class="projects">
         <h2>Projektet e Mia</h2>
-        <div class="project-filters">
-            <!-- Filtrat ekzistojnë -->
-        </div>
         
-        <!-- Projekti 1 -->
-        <div class="project-card" data-category="react">
-            <div class="project-gallery">
-                <div class="gallery-item">
-                    <img src="project1-1.jpg" alt="Screenshot Projekt 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="project1-2.jpg" alt="Screenshot Projekt 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="project1-3.jpg" alt="Screenshot Projekt 1">
-                </div>
-            </div>
+        <div class="project-card">
+            <img src="project1.jpg" alt="Projekti 1">
             <div class="project-overlay">
                 <h3>E-Commerce Platform</h3>
+                <p>Zhvillim i platformës së shitjes online me React dhe Node.js</p>
                 <div class="tech-stack">
-                    <span class="tech-badge">React</span>
-                    <span class="tech-badge">Node.js</span>
-                    <span class="tech-badge">MongoDB</span>
+                    <span>React</span>
+                    <span>Node.js</span>
+                    <span>MongoDB</span>
                 </div>
-                <p>Platform moderne për shitje online me sistem të avancuar të pagesave</p>
-                <div class="project-links">
-                    <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                    <a href="#" class="btn"><i class="fab fa-github"></i> Shiko Kodin</a>
-                </div>
+                <a href="#" class="btn">Shiko Projektin</a>
             </div>
         </div>
 
-        <!-- Projekti 2 -->
-        <div class="project-card" data-category="node">
-            <img src="project2-main.jpg" alt="Projekti 2">
+        <div class="project-card">
+            <img src="project2.jpg" alt="Projekti 2">
             <div class="project-overlay">
-                <h3>Sistemi i Menaxhimit</h3>
+                <h3>Portofolio Website</h3>
+                <p>Portofol interaktiv për paraqitjen e projekteve</p>
                 <div class="tech-stack">
-                    <span class="tech-badge">Node.js</span>
-                    <span class="tech-badge">Express</span>
-                    <span class="tech-badge">PostgreSQL</span>
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript</span>
                 </div>
-                <p>Sistem CRM i personalizuar për menaxhimin e klientëve</p>
-                <div class="project-links">
-                    <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                    <a href="#" class="btn"><i class="fab fa-github"></i> Shiko Kodin</a>
-                </div>
+                <a href="#" class="btn">Shiko Projektin</a>
             </div>
         </div>
     </section>
 
-    <!-- Seksioni i Blogut me Foto -->
+    <!-- Blogu -->
     <section id="blog" class="blog">
-        <h2>Artikuj Teknikë</h2>
-        <div class="blog-posts">
-            <article class="blog-card">
-                <div class="blog-image">
-                    <img src="blog-post1.jpg" alt="Optimizimi i Performancës">
-                </div>
-                <div class="blog-content">
-                    <h3>Optimizimi i Aplikacioneve React</h3>
-                    <div class="post-meta">
-                        <span class="date"><i class="far fa-calendar"></i> 15 Mars 2024</span>
-                        <span class="reading-time"><i class="far fa-clock"></i> 5 min lexim</span>
-                    </div>
-                    <p>Zbuloni teknikat e avancuara për optimizimin e performancës në aplikacionet e mëdha React...</p>
-                    <a href="#" class="btn">Lexo Artikullin <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </article>
+        <div class="blog-post">
+            <h3>Si të Optimizoni Performancën në React</h3>
+            <p>Një udhëzues i detajuar për teknikat e optimizimit...</p>
+            <a href="#" class="btn">Lexo Më Shumë</a>
         </div>
     </section>
 
-    <!-- Stilizime Shtesë -->
-    <style>
-        .social-icon {
-            font-size: 1.5rem;
-            margin: 0 1rem;
-            color: var(--text-color);
-            transition: transform 0.3s;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px);
-            color: var(--primary);
-        }
-
-        .blog-image {
-            height: 200px;
-            overflow: hidden;
-            border-radius: 8px 8px 0 0;
-        }
-
-        .blog-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .project-links {
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn i {
-            margin-right: 0.5rem;
-        }
-
-        .post-meta {
-            display: flex;
-            gap: 1rem;
-            margin: 0.5rem 0;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        [data-theme="dark"] .post-meta {
-            color: #ccc;
-        }
-    </style>
+    <!-- Kontakt -->
+    <section id="contact" class="contact">
+        <h2>Më Kontakto</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Emri Juaj" required>
+            <input type="email" placeholder="Email" required>
+            <textarea rows="5" placeholder="Mesazhi Juaj" required></textarea>
+            <button type="submit" class="btn">Dërgo</button>
+        </form>
+    </section>
 
     <script>
-        // Shtojmë animacion shtesë për foto profil
-        gsap.from(".profile-image", {
-            duration: 1,
-            scale: 0.5,
-            opacity: 0,
-            ease: "back.out(1.7)"
+        // Dark Mode
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+            themeToggle.innerHTML = document.body.classList.contains('dark-mode') 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
         });
 
-        // Animacion për kartat e blogut
-        ScrollReveal().reveal('.blog-card', {
+        // Animacione
+        ScrollReveal().reveal('.project-card, .blog-post', {
             delay: 300,
             distance: '50px',
-            origin: 'right',
+            origin: 'bottom',
             interval: 100
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
 </body>
