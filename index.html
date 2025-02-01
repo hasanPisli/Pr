@@ -3,416 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emri Juaj - Portofolio</title>
+    <title>Portofolio - Emri Juaj</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        /* Stilizimi Bazë */
+        /* 🎨 Ngjyrat Kryesore */
         :root {
-            --bg-color: #f8f9fa;
+            --bg-color: #ffffff;
             --text-color: #2d3436;
             --primary: #6c5ce7;
             --secondary: #a66efa;
-            --card-bg: #ffffff;
+            --card-bg: #f8f9fa;
         }
 
-        [data-theme="dark"] {
-            --bg-color: #2d3436;
-            --text-color: #f8f9fa;
-            --card-bg: #3a4042;
-        }
-
-        /* Stilizimi i Seksionit 'Rreth Meje' */
-        .about-section {
-            padding: 5rem 2rem;
+        /* Reset dhe Font */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
             background: var(--bg-color);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .profile-side {
-            text-align: center;
-            position: relative;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--primary);
-            box-shadow: 0 10px 30px rgba(108,92,231,0.3);
-        }
-
-        .skills-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .skill-tag {
-            background: var(--primary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: transform 0.3s;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Stilizimi i CV-së */
-        .cv-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .timeline-item {
-            background: var(--card-bg);
-            padding: 2rem;
-            margin: 2rem 0;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: relative;
             color: var(--text-color);
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -30px;
-            top: 20px;
-            width: 20px;
-            height: 20px;
+        /* 🔹 HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
             background: var(--primary);
-            border-radius: 50%;
-        }
-
-        .download-cv {
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .download-btn {
-            background: white;
-            color: var(--primary);
             padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-flex;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            transition: transform 0.3s;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .download-btn:hover {
-            transform: translateY(-3px);
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
         }
-    </style>
-</head>
-<body>
-    <!-- Seksioni 'Rreth Meje' -->
-    <section id="about" class="about-section">
-        <div class="profile-side">
-            <img src="profile.jpg" alt="Foto Profili" class="profile-img">
-            <div class="skills-cloud">
-                <span class="skill-tag">React</span>
-                <span class="skill-tag">Node.js</span>
-                <span class="skill-tag">TypeScript</span>
-                <span class="skill-tag">UI/UX</span>
-                <span class="skill-tag">MongoDB</span>
-            </div>
-        </div>
 
-        <div class="about-content">
-            <h2>Rreth Meje</h2>
-            <p class="intro-text">
-                Jam një zhvillues full stack me pasion për krijimin e zgjidhjeve inovative. 
-                Me më shumë se 5 vjet përvojë në industri, kam punuar në projekte të ndryshme 
-                që variojnë nga platforma e-commerce deri te aplikacione enterprise.
-            </p>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>50+</h3>
-                    <p>Projekte të Përfunduara</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3>30+</h3>
-                    <p>Klientë të Kënaqur</p>
-                </div>
-            </div>
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
 
-            <div class="bio-text">
-                <p>
-                    Specializoj në zhvillimin e aplikacioneve moderne web duke përdorur 
-                    teknologjitë më të fundit si React, Node.js dhe cloud services. 
-                    Gjithmonë në kërkim të sfidave të reja dhe mundësive për të mësuar.
-                </p>
-            </div>
-        </div>
-    </section>
+        nav ul li {
+            margin: 0 1rem;
+        }
 
-    <!-- Seksioni CV -->
-    <section id="cv" class="cv-section">
-        <div class="timeline">
-            <h2>Eksperienca Profesionale</h2>
-            
-            <div class="timeline-item">
-                <div class="timeline-header">
-                    <h3>Zhvillues Full Stack</h3>
-                    <p class="company">Tech Innovators Inc.</p>
-                    <p class="duration">2022 - Present</p>
-                </div>
-                <ul class="timeline-details">
-                    <li><i class="fas fa-caret-right"></i> Zhvillimi i sistemit të menaxhimit të brendshëm</li>
-                    <li><i class="fas fa-caret-right"></i> Implementimi i veçorive të reja në produktin kryesor</li>
-                    <li><i class="fas fa-caret-right"></i> Optimizimi i performancës së aplikacionit</li>
-                </ul>
-            </div>
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
 
-            <div class="timeline-item">
-                <div class="timeline-header">
-                    <h3>Frontend Developer</h3>
-                    <p class="company">Digital Solutions</p>
-                    <p class="duration">2020 - 2022</p>
-                </div>
-                <ul class="timeline-details">
-                    <li><i class="fas fa-caret-right"></i> Krijimi i UI/UX për aplikacione mobile</li>
-                    <li><i class="fas fa-caret-right"></i> Zhvillimi i komponentëve të riutilizueshëm</li>
-                    <li><i class="fas fa-caret-right"></i> Integrimi me API të jashtëm</li>
-                </ul>
-            </div>
-        </div>
+        /* 🔹 HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?technology') center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            padding: 2rem;
+        }
 
-        <div class="download-cv">
-            <a href="cv.pdf" download class="download-btn">
-                <i class="fas fa-download"></i>
-                Shkarko CV
-            </a>
-        </div>
-    </section>
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
 
-    <!-- Stilizim Shtesë -->
-    <style>
-        .about-content h2 {
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        /* 🔹 ABOUT ME */
+        .about {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .about h2 {
             font-size: 2.5rem;
             color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        /* 🔹 SLIDER (PROJECTS) */
+        .slider {
+            overflow: hidden;
+            position: relative;
+            background: var(--card-bg);
+            padding: 4rem 0;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            text-align: center;
+        }
+
+        .slide img {
+            max-width: 80%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .slider-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* 🔹 OUR CLIENTS */
+        .clients {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .clients h2 {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
         }
 
-        .intro-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            color: var(--text-color);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .stat-item {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .stat-item i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2rem;
-            color: var(--text-color);
-            margin: 0.5rem 0;
-        }
-
-        .timeline-header {
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .company {
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .duration {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        .timeline-details {
-            list-style: none;
-        }
-
-        .timeline-details li {
-            margin: 0.5rem 0;
+        .logos {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 2rem;
         }
 
-        @media (max-width: 768px) {
-            .about-section {
-                grid-template-columns: 1fr;
-                padding: 3rem 1rem;
-            }
-
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+        .logos img {
+            max-width: 120px;
+            filter: grayscale(100%);
+            transition: 0.3s;
         }
+
+        .logos img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* 🔹 FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
     </style>
-    <!-- Shtoni këto në seksionin <head> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
 
-<!-- Shtoni këto animacione në fund të seksionit <script> -->
-<script>
-    // Animacioni i Hero Section me GSAP
-    gsap.from(".profile-img", {
-        duration: 1.5,
-        scale: 0.8,
-        opacity: 0,
-        ease: "power4.out",
-        rotation: 5
-    });
+    <!-- 🔹 HEADER -->
+    <header>
+        <div class="logo">Portofolio</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Clients</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    gsap.from(".hero-content h1", {
-        duration: 1.2,
-        y: 100,
-        opacity: 0,
-        ease: "bounce.out",
-        delay: 0.3
-    });
+    <!-- 🔹 HERO -->
+    <section class="hero">
+        <h1>Mirësevini në Portofolion Tim</h1>
+        <p>Krijoj zgjidhje të avancuara dhe inovative për klientët e mi.</p>
+        <a href="#" class="btn">Shiko Projektet</a>
+    </section>
 
-    // Animacioni i Skills Cloud me hover
-    gsap.from(".skill-tag", {
-        stagger: 0.1,
-        scale: 0,
-        opacity: 0,
-        ease: "back.out(1.7)",
-        scrollTrigger: {
-            trigger: ".skills-cloud",
-            start: "top 80%"
-        }
-    });
+    <!-- 🔹 ABOUT ME -->
+    <section class="about">
+        <h2>Rreth Meje</h2>
+        <p>Jam një zhvillues full-stack me përvojë në teknologji moderne si React, Node.js dhe Laravel.</p>
+    </section>
 
-    // Animacioni i Timeline me ScrollReveal
-    ScrollReveal().reveal('.timeline-item', {
-        delay: 300,
-        distance: '50px',
-        origin: 'left',
-        interval: 200,
-        easing: 'ease-in-out'
-    });
+    <!-- 🔹 OUR CLIENTS -->
+    <section class="clients">
+        <h2>Klientët Tanë</h2>
+        <div class="logos">
+            <img src="client1.png" alt="Client 1">
+            <img src="client2.png" alt="Client 2">
+            <img src="client3.png" alt="Client 3">
+        </div>
+    </section>
 
-    // Animacioni i Stats Grid me GSAP
-    gsap.from(".stat-item", {
-        stagger: 0.3,
-        duration: 1,
-        scale: 0.8,
-        opacity: 0,
-        ease: "elastic.out(1, 0.5)",
-        scrollTrigger: {
-            trigger: ".stats-grid",
-            start: "top 70%"
-        }
-    });
+    <!-- 🔹 FOOTER -->
+    <footer>
+        <p>&copy; 2024 Emri Juaj. Të gjitha të drejtat e rezervuara.</p>
+    </footer>
 
-    // Hover efekti për projektet
-    gsap.to(".project-card", {
-        hover: {
-            y: -10,
-            boxShadow: "0 15px 40px rgba(0,0,0,0.2)",
-            duration: 0.3,
-            ease: "power2.out"
-        }
-    });
+    <script>
+        // 🔹 GSAP ANIMATION
+        gsap.from(".hero h1", { opacity: 0, y: -50, duration: 1, ease: "power3.out" });
+        gsap.from(".hero p", { opacity: 0, y: 50, duration: 1, delay: 0.3, ease: "power3.out" });
+    </script>
 
-    // Animacioni i download button
-    gsap.from(".download-btn", {
-        duration: 1,
-        scale: 0,
-        rotation: 360,
-        ease: "power4.out",
-        scrollTrigger: {
-            trigger: ".download-cv",
-            start: "top 80%"
-        }
-    });
-
-    // Text stagger animation për bio
-    gsap.from(".bio-text p", {
-        duration: 1.5,
-        y: 50,
-        opacity: 0,
-        stagger: 0.2,
-        ease: "power4.out",
-        scrollTrigger: {
-            trigger: ".bio-text",
-            start: "top 80%"
-        }
-    });
-
-    // Counter animation për stats
-    gsap.to(".stat-item h3", {
-        textContent: 0,
-        duration: 2,
-        ease: "power4.out",
-        snap: { textContent: 1 },
-        stagger: 0.5,
-        scrollTrigger: {
-            trigger: ".stats-grid",
-            start: "top 70%",
-            toggleActions: "play none none reset"
-        },
-        onUpdate: function(target) {
-            const endValue = parseInt(target.targets()[0].getAttribute('data-end-value'));
-            target.targets()[0].textContent = Math.floor(this.targets()[0].textContent);
-            if(parseInt(target.targets()[0].textContent) === endValue) this.pause();
-        }
-    });
-</script>
-
-<!-- Përditësoni HTML për stats -->
-<div class="stat-item">
-    <i class="fas fa-project-diagram"></i>
-    <h3 data-end-value="50">0</h3>
-    <p>Projekte të Përfunduara</p>
-</div>
-<div class="stat-item">
-    <i class="fas fa-users"></i>
-    <h3 data-end-value="30">0</h3>
-    <p>Klientë të Kënaqur</p>
-</div>
 </body>
-    </html>
+</html>
