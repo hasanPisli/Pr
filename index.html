@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
     <style>
         /* Stilizimi Bazë */
         :root {
@@ -25,213 +26,184 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            margin: 0;
             line-height: 1.6;
             background-color: var(--bg-color);
             color: var(--text-color);
             transition: all 0.3s ease;
         }
 
-        /* Stilizimi i Slider-it */
-        .slider-section {
-            padding: 4rem 0;
+        /* Stilizimi i Projekteve */
+        .projects-section {
+            padding: 5rem 2rem;
             background: var(--card-bg);
-            position: relative;
-            overflow: hidden;
         }
 
-        .slider-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .slide {
-            min-width: 100%;
-            padding: 0 2rem;
-            text-align: center;
-        }
-
-        .slide-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
+        .project-card {
             background: var(--bg-color);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 1rem;
-        }
-
-        .slider-btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
             transition: transform 0.3s;
         }
 
-        /* Stilizimi i Footer-it */
-        footer {
-            background: var(--text-color);
-            color: white;
-            padding: 4rem 2rem;
-            margin-top: 4rem;
+        .project-card:hover {
+            transform: translateY(-10px);
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+        .project-media {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
         }
 
-        .footer-section h3 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
+        .project-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
         }
 
-        .social-links {
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+            padding: 1rem;
             color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
         }
 
-        .footer-bottom {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+        .project-card:hover .project-overlay {
+            opacity: 1;
         }
 
-        /* Stilizime ekzistuese për seksionet e tjera... */
+        .tech-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Animacione */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
     </style>
 </head>
 <body>
-    <!-- Seksionet ekzistuese (Hero, Rreth Meje, Projekte, CV, etj.) -->
 
-    <!-- Slider Section -->
-    <section class="slider-section">
-        <div class="slider-wrapper">
-            <div class="slide">
-                <div class="slide-content">
-                    <h3>Projekti i Fundit</h3>
-                    <p>Platforma moderne e-commerce me React dhe Node.js</p>
-                    <img src="project1.jpg" alt="Projekti 1" style="max-width:100%; height:300px; object-fit:cover; border-radius:10px;">
-                    <div style="margin-top:1rem;">
-                        <a href="#" class="btn">Shiko Detajet</a>
+    <!-- Seksioni i Projekteve -->
+    <section id="projects" class="projects-section">
+        <h2>Projektet e Mia</h2>
+        
+        <div class="project-grid">
+            <!-- Projekti 1 -->
+            <div class="project-card reveal-item">
+                <div class="project-media">
+                    <img src="project1.jpg" alt="Projekti 1">
+                    <div class="project-overlay">
+                        <h3>Platforma E-Commerce</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <p>Platform moderne për menaxhimin e shitjeve online</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kodi</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="slide">
-                <div class="slide-content">
-                    <h3>Sistemi CRM</h3>
-                    <p>Menaxhimi i klientëve me Vue.js dhe Laravel</p>
-                    <img src="project2.jpg" alt="Projekti 2" style="max-width:100%; height:300px; object-fit:cover; border-radius:10px;">
-                    <div style="margin-top:1rem;">
-                        <a href="#" class="btn">Shiko Detajet</a>
+            <!-- Projekti 2 -->
+            <div class="project-card reveal-item">
+                <div class="project-media">
+                    <img src="project2.jpg" alt="Projekti 2">
+                    <div class="project-overlay">
+                        <h3>Sistemi CRM</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <p>Sistem i personalizuar për menaxhimin e klientëve</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fas fa-external-link-alt"></i> Live</a>
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kodi</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="slider-nav">
-            <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Kontakt</h3>
-                <p><i class="fas fa-envelope"></i> info@example.com</p>
-                <p><i class="fas fa-phone"></i> +355 67 123 4567</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-section">
-                <h3>Navigim</h3>
-                <ul style="list-style:none; padding:0;">
-                    <li><a href="#home" style="color:white; text-decoration:none;">Home</a></li>
-                    <li><a href="#projects" style="color:white; text-decoration:none;">Projektet</a></li>
-                    <li><a href="#cv" style="color:white; text-decoration:none;">CV</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h3>Rreth Nesh</h3>
-                <p>Zhvillues full-stack me fokus në teknologjitë moderne web</p>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2024 Emri Juaj. Të gjitha të drejtat e rezervuara</p>
-        </div>
-    </footer>
-
     <script>
-        // Logjika e Slider-it
-        const sliderWrapper = document.querySelector('.slider-wrapper');
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        let currentIndex = 0;
-
-        function updateSlider() {
-            sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        }
-
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSlider();
+        // Animacionet për Projekte
+        gsap.utils.toArray(".reveal-item").forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 80%"
+                },
+                duration: 1,
+                opacity: 0,
+                y: 50,
+                ease: "power4.out"
+            });
         });
 
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-            updateSlider();
+        // Hover efekt për projektet
+        gsap.to(".project-card", {
+            hover: {
+                y: -15,
+                duration: 0.3,
+                ease: "power2.out"
+            }
         });
 
-        // Auto-slide çdo 5 sekonda
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateSlider();
-        }, 5000);
-
-        // Animacion për footer
-        gsap.from(".footer-section", {
+        // Animacion overlay
+        gsap.to(".project-overlay", {
+            backgroundPosition: "0% 0%",
             scrollTrigger: {
-                trigger: "footer",
-                start: "top bottom"
-            },
-            duration: 1,
-            opacity: 0,
-            y: 50,
-            stagger: 0.2,
-            ease: "power2.out"
+                trigger: ".project-media",
+                start: "top center",
+                scrub: true
+            }
+        });
+
+        // ScrollReveal për titullin
+        ScrollReveal().reveal('h2', {
+            delay: 200,
+            distance: '50px',
+            origin: 'left',
+            easing: 'ease-in-out'
         });
     </script>
 </body>
