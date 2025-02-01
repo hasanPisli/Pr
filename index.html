@@ -3,124 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Portofolio - Emri Juaj</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* 🎨 Ngjyrat Kryesore */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #2d3436;
+            --primary: #6c5ce7;
+            --secondary: #a66efa;
+            --card-bg: #f8f9fa;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            --bg-color: #181818;
+            --text-color: #f1f1f1;
+            --card-bg: #252525;
+        }
+
+        /* Reset dhe Font */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            color: var(--text-color);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* 🔹 HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--primary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        /* 🔹 ABOUT ME */
+        .about-me {
+            background: var(--card-bg);
+            padding: 4rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .about-image img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.1);
+        }
+
+        .about-text {
+            max-width: 600px;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-text h3 {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-text ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-text ul li {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-text ul li i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        /* 🔹 HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: url('https://source.unsplash.com/1600x900/?technology') center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* 🔹 SLIDER (PROJECTS) */
+        .slider {
+            overflow: hidden;
+            position: relative;
+            background: var(--card-bg);
+            padding: 4rem 0;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            width: 300%;
+            animation: slide 10s infinite;
+        }
+
+        .slide {
+            min-width: 33.33%;
+            text-align: center;
+        }
+
+        .slide img {
+            max-width: 80%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .slide img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 🔹 DARK MODE BUTTON */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* 🔹 FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background: var(--secondary);
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: var(--primary);
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(0); }
+            33% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-66.66%); }
+        }
+    </style>
 </head>
 <body>
 
     <!-- 🔹 HEADER -->
     <header>
+        <div class="logo">Portofolio</div>
         <nav>
-            <div class="logo">Portofolio</div>
-            <ul class="menu">
-                <li><a href="#home">Kreu</a></li>
-                <li><a href="#about">Rreth Meje</a></li>
-                <li><a href="#projects">Projektet</a></li>
-                <li><a href="#clients">Klientët</a></li>
-                <li><a href="#contact">Kontakt</a></li>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">Clients</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
+        <button class="dark-mode-toggle">Dark Mode</button>
     </header>
 
-    <!-- 🔹 SLIDER -->
-    <section class="slider">
-        <div class="slides">
-            <div class="slide"><img src="slide1.jpg" alt="Slider 1"></div>
-            <div class="slide"><img src="slide2.jpg" alt="Slider 2"></div>
-            <div class="slide"><img src="slide3.jpg" alt="Slider 3"></div>
-        </div>
+    <!-- 🔹 HERO -->
+    <section class="hero">
+        <h1>Mirësevini në Portofolion Tim</h1>
+        <p>Krijoj zgjidhje të avancuara dhe inovative për klientët e mi.</p>
+        <a href="#" class="btn">Shiko Projektet</a>
     </section>
 
-    <!-- 🔹 ABOUT ME -->
-    <section id="about" class="about-me">
+    <!-- 🔹 PROJECTS (SLIDER) -->
+    <section class="slider">
+        <div class="slider-wrapper">
+            <div class="slide"><img src="project1.jpg" alt="Project 1"></div>
+            <div class="slide"><img src="project2.jpg" alt="Project 2"></div>
+            <div class="slide"><img src="project3.jpg" alt="Project 3"></div>
+        </div>
+    </section>
+<!-- 🔹 ABOUT ME -->
+    <section class="about-me">
         <div class="container">
             <div class="about-image">
                 <img src="your-photo.jpg" alt="Your Photo">
             </div>
             <div class="about-text">
                 <h2>Rreth Meje</h2>
-                <p>Unë jam një zhvillues uebi me pasion për krijimin e faqeve të internetit tërheqëse dhe funksionale. Kam eksperiencë në HTML, CSS, JavaScript, React dhe WordPress.</p>
+                <p>Unë jam një zhvillues uebi me pasion për krijimin e faqeve të internetit tërheqëse dhe funksionale. Kam eksperiencë në HTML, CSS, JavaScript, dhe framework-e moderne si React dhe WordPress. Fokusi im është të ofroj zgjidhje inovative për klientët duke përdorur teknologji të avancuara.</p>
                 <h3>Aftësitë Kryesore</h3>
                 <ul>
                     <li><i class="fas fa-check"></i> Frontend Development (HTML, CSS, JavaScript, React)</li>
                     <li><i class="fas fa-check"></i> Backend Development (Node.js, PHP, MySQL)</li>
-                    <li><i class="fas fa-check"></i> WordPress Development</li>
-                    <li><i class="fas fa-check"></i> UI/UX Design</li>
+                    <li><i class="fas fa-check"></i> WordPress Development & Custom Plugins</li>
+                    <li><i class="fas fa-check"></i> UI/UX Design dhe Optimizim</li>
                 </ul>
                 <a href="#" class="btn">Shkarko CV</a>
             </div>
         </div>
     </section>
 
-    <!-- 🔹 PROJECTS -->
-    <section id="projects" class="projects">
-        <h2>Projektet e Mia</h2>
-        <div class="project-container">
-            <div class="project"><img src="project1.jpg" alt="Project 1"><h3>Projekti 1</h3></div>
-            <div class="project"><img src="project2.jpg" alt="Project 2"><h3>Projekti 2</h3></div>
-            <div class="project"><img src="project3.jpg" alt="Project 3"><h3>Projekti 3</h3></div>
-        </div>
-    </section>
-
-    <!-- 🔹 OUR CLIENTS -->
-    <section id="clients" class="clients">
-        <h2>Klientët Tanë</h2>
-        <div class="client-logos">
-            <img src="client1.png" alt="Klienti 1">
-            <img src="client2.png" alt="Klienti 2">
-            <img src="client3.png" alt="Klienti 3">
-        </div>
-    </section>
-
+    
     <!-- 🔹 FOOTER -->
     <footer>
-        <p>&copy; 2025 Portofolio. Të gjitha të drejtat e rezervuara.</p>
+        <p>&copy; 2024 Emri Juaj. Të gjitha të drejtat e rezervuara.</p>
     </footer>
 
-    <!-- 🔹 STYLES -->
-    <style>
-        /* Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-
-        /* HEADER */
-        header { background: #333; padding: 1rem; }
-        nav { display: flex; justify-content: space-between; align-items: center; }
-        .logo { color: #fff; font-size: 1.5rem; font-weight: bold; }
-        .menu { list-style: none; display: flex; }
-        .menu li { margin: 0 15px; }
-        .menu li a { color: white; text-decoration: none; }
-
-        /* SLIDER */
-        .slider { width: 100%; overflow: hidden; position: relative; }
-        .slides { display: flex; width: 300%; animation: slide 9s infinite; }
-        .slide img { width: 100%; height: 400px; object-fit: cover; }
-        @keyframes slide {
-            0%, 33% { transform: translateX(0); }
-            34%, 66% { transform: translateX(-100%); }
-            67%, 100% { transform: translateX(-200%); }
-        }
-
-        /* ABOUT ME */
-        .about-me { background: #f8f9fa; padding: 4rem 2rem; text-align: center; }
-        .about-image img { width: 200px; border-radius: 50%; }
-        .about-text h2 { color: #333; margin: 1rem 0; }
-        .about-text ul { list-style: none; text-align: left; }
-        .btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px; }
-
-        /* PROJECTS */
-        .projects { padding: 4rem 2rem; text-align: center; }
-        .project-container { display: flex; justify-content: center; gap: 20px; }
-        .project { width: 30%; text-align: center; }
-        .project img { width: 100%; height: 200px; object-fit: cover; }
-
-        /* CLIENTS */
-        .clients { background: #f8f9fa; padding: 3rem; text-align: center; }
-        .client-logos img { width: 100px; margin: 10px; }
-
-        /* FOOTER */
-        footer { background: #333; color: white; text-align: center; padding: 1rem; }
-    </style>
+    <script>
+        document.querySelector(".dark-mode-toggle").addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+        });
+    </script>
 
 </body>
 </html>
